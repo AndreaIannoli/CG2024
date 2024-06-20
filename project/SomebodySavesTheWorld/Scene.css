@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@500&display=swap');
+
+* {
+    margin: 0;
+}
+
+body {
+    background-color: black;
+    overflow: hidden;
+}
+
+#canvas {
+    width: 100vw;
+    height: 100vh;
+}
+
+.playBtn {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: 15%;
+    font-size: 45px;
+    border-radius: 40px;
+    background-color: #71706e;
+    border-color: #9c9999;
+    color: #292323;
+}
+
+@media (max-width: 767.98px) {
+    .playBtn {
+        width: 50%;
+    }
+}
+
+.playBtn:hover {
+    background-color: #292323;
+    border-color: #9c9999;
+    color: #DC3545;
+}
+
+.playBtn:active {
+    background-color: #71706e !important;
+    border-color: #9c9999 !important;
+    color: #DC3545 !important;
+}
+
+.optionBtn {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: auto;
+    font-size: 45px;
+    border-radius: 40px;
+    background-color: #71706e;
+    border-color: #9c9999;
+    color: #292323;
+}
+
+
+.optionBtn:hover {
+    background-color: #292323;
+    border-color: #9c9999;
+    color: #DC3545;
+}
+
+.optionBtn:active {
+    background-color: #71706e !important;
+    border-color: #9c9999 !important;
+    color: #DC3545 !important;
+}
+
+.optionBtnSmall {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: auto;
+    font-size: 20px;
+    border-radius: 40px;
+    background-color: #71706e;
+    border-color: #9c9999;
+    color: #292323;
+}
+
+
+.optionBtnSmall:hover {
+    background-color: #292323;
+    border-color: #9c9999;
+    color: #DC3545;
+}
+
+.optionBtnSmall:active {
+    background-color: #71706e !important;
+    border-color: #9c9999 !important;
+    color: #DC3545 !important;
+}
+
+.sstwlogo {
+    width: 20%;
+}
+
+@media (max-width: 767.98px) {
+    .sstwlogo {
+        width: 60%;
+    }
+}
+
+.lilitaone {
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.command-btn {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.command-btn:active {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.command-btn:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.modal-backdrop {
+    display: none;
+}
+  
+.modal {
+    background: rgba(0,0,0,0.5);
+}
+
+.modal{
+    background-color: rgba(0, 0, 0, 0.3) !important;
+  }
+.modal-backdrop{
+    position: relative !important;
+}
+
+@media (max-width: 767.98px) {
+    #command-container {
+        height: 100vh;
+    }
+}

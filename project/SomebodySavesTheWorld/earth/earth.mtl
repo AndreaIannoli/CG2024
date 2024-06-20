@@ -1,0 +1,15 @@
+# Blender MTL File: 'Earth 3D Model.blend'
+# Material Count: 1
+
+newmtl Material.001
+Ns 365.475194
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump /earth/texture/8k_earth_normal_map.tif
+map_Kd /earth/texture/8k_earth_daymap.jpg
+map_Ks /earth/texture/8k_earth_specular_map.tif
