@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <title>CG Report</title>
+    </head>
+    <body class="bg-dark">
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <h1 class="display-3 text-white text-center">Report Progetto Computer Graphics</h1>
+            <h1 class="display-6 text-white text-center">2023/24</h1>
+            <h1 class="display-6 text-white text-center">Andrea Iannoli - 0001145007</h1>
+            <hr>
+            <div class="container bg-dark-subtle rounded-3 p-3">
+                <ul class="text-black fs-5">
+                    <li><a href="#introduction">Introduzione</a></li>
+                    <li><a href="#description">Descrizione del progetto</a></li>
+                    <li><a href="#gui">Interfaccia</a></li>
+                    <li><a href="#commands">Comandi</a></li>
+                    <li><a href="#structure">Struttura del progetto</a></li>
+                    <li><a href="#3dmodeling">3D modeling</a></li>
+                    <li><a href="#skybox">Skybox</a></li>
+                    <li><a href="#camera">Camera 3D con target</a></li>
+                    <li><a href="#collision">Gestione delle collisioni</a></li>
+                    <li><a href="#resource">Risorse</a></li>
+                    <li><a href="#adrender">Advanced Rendering</a></li>
+                </ul>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="introduction">Introduzione</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4">
+                <p class="fs-5">
+                    Il progetto è stato sviluppato per il corso di Computer Graphics dell'A.A. 2023/24 tenuto da Giulio Casciola. 
+                    Lo scopo del progetto è quello di realizzare un'applicazione web 3D interattiva utilizzando WebGL (HTML5, CSS e contesto webgl), linguaggi JavaScript e GLSL che sia funzionante e testata su browser Chrome.
+                    <br>
+                    Tutti i modelli visualizzabili nella scena 3D sono stati modificati o creati in Blender e poi esportati in formato obj Wavefront.
+                </p>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="description">Descrizione del progetto</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4 d-flex justify-content-center align-items-center flex-column">
+                <img
+                    src="./img/SSTWLogo.png"
+                    class="img-fluid mb-3 w-50"
+                    alt="logo"
+                />
+                <p class="fs-5 mb-3">
+                    La realizzazione del progetto è consistita in un gioco arcade chiamato "Somebody Saves The World" in cui l'utente comanda un razzo il cui scopo è colpire i meteoriti prima che quest'ultimi possano colpire la terra.
+                    <br>
+                    Il gioco è strutturato a livelli, ad ogni livello il numero di meteoriti da distruggere incrementa.
+                </p>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="gui">Interfaccia</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4 d-flex flex-column align-items-center">
+                <img
+                    src="./img/sstw1.png"
+                    class="img-fluid rounded mb-3"
+                    alt="interfaccia desktop"
+                />
+                <p class="fs-5 mb-3">
+                    L'interfaccia è abbastanza semplice ed intuitiva. All'inizio è possibile scegliere attraverso l'interazione del mouse dove posizionare la luce nella scena. Una volta scelto il punto che piú ci piace è possibile procedere premendo il pulsante "set lights".
+                    <img
+                    src="./img/lightoption.png"
+                    class="img-fluid rounded my-3"
+                    alt="impostazione luce"
+                    />
+                    A questo punto verrà visualizzato il menú principale. Dopo aver cliccato play al centro dello schermo ha inizio la partita. In alto al centro è possibile visualizzare il livello mentre in alto a destra i meteoriti rimasti da distruggere per il passaggio del livello. Una volta perso, ovvero quando un meteorite colpisce la terra, viene visualizzato a schermo il punteggio conseguito ed il pulsante play per giocare ancora.
+                    <br>
+                    Per creare l'overlay dell'interfaccia è stato utilizzato bootstrap sfruttando il position absolute di css e l'attributo z-index.
+                    <br>
+                    L'interfaccia è completamente responsive e fruibile da mobile.
+                </p>
+                <img
+                    src="./img/mobile.png"
+                    class="img-fluid rounded w-25"
+                    alt="interfaccia mobile"
+                />
+            </div>
+            <h1 class="display-6 text-white mt-5" id="commands">Comandi</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4">
+                <p class="fs-5 mb-3">
+                    I comandi per il gioco sono i seguenti e vengono abilitati dopo la prima volta che si preme il pulsante play:
+                </p>
+                <ul class="fs-5">
+                    <li>w: fa muovere il razzo in avanti</li>
+                    <li>a: fa muovere il razzo verso sinistra senza ruotarlo (sola traslazione, niente tilting)</li>
+                    <li>s: fa muovere il razzo indietro</li>
+                    <li>d: fa muovere il razzo verso destra senza ruotarlo (sola traslazione, niente tilting)</li>
+                    <li>freccia in alto: fa muovere il razzo verso l'alto</li>
+                    <li>freccia in basso: fa muovere il razzo verso il basso</li>
+                    <li>freccia destra: fa ruotare il razzo verso destra (tilting)</li>
+                    <li>freccia sinistra: fa ruotare il razzo verso sinistra (tilting)</li>
+                </ul>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="structure">Struttura del progetto</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4">
+                <p class="fs-5">
+                    La directory del progetto è formata dalle seguenti subdirectory:
+                </p>
+                <ul class="fs-5">
+                    <li>audio: contiene i file audio come la musica di sottofondo e le esplosioni</li>
+                    <li>img: contiene i file immagine come il logo del gioco</li>
+                    <li>skybox: contiene le sei immagini necessarie per generare la cubemap texture della skybox</li>
+                    <li>js: contiene i file javascript del progetto ed una directory chiamata resources contenente le librerie esterne utilizzate (m4, webgl-utils ecc.)</li>
+                    <li>Una directory per ogni asset 3D contenente i dati del modello 3D e le texture</li>
+                </ul>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="3dmodeling">3D Modeling</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4">
+                <p class="fs-5">
+                    Una delle parti fondamentali del progetto è consistita nella modellazione 3D dei modelli della scena. 
+                </p>
+                <img
+                    src="./img/modeling1.png"
+                    class="img-fluid mb-3"
+                    alt="modeling 3D Blender"
+                />
+                <img
+                    src="./img/modeling2.png"
+                    class="img-fluid mb-3"
+                    alt="modeling 3D Blender"
+                />
+                <p class="fs-5">
+                    Il modello 3D del meteorite è stato creato <i>from scratch</i> a partire da un cubo usando circle slice e smoothing dei poligoni rimanenti. Non avendo un vero è proprio map bump questo e stato creato attraverso una <i>Color Ramp</i>.
+                    <br>
+                    Il modello della cornice contenente la mia foto era un .fbx con texture non mappate. Su quest'ultimo ho effettuato un texture mapping in blender con corrispondente bump map e roughness map. Ho poi provveduto a modificarne la texture base color con photoshop per poi aggiungere una mia foto all'interno della cornice.
+                    <br>
+                    Gli altri modelli 3D come la terra e il razzo, hanno subito solo un export in formato obj Wavefront con Blender.
+                </p>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="skybox">Skybox</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4 d-flex flex-column justify-content-center align-items-center">
+                <p class="fs-5">
+                    Inzialmente pensavo ingenuamente di cavarmela con uno sfondo settato attraverso il comando <i>clearCanvas()</i>. Ho poi trovato lo sfondo nero, anche se di spazio si trattava, poco realisico e senza profondità. Ho quindi consultato <a href="https://webglfundamentals.org/">WebGL Fundamentals</a> ed ho trovato la soluzione al mio problema: la skybox.
+                </p>
+                <img
+                src="./img/cubemap.png"
+                class="img-fluid mb-3 mt-3 w-50"
+                alt="cubemap skybox"
+                />
+                <p class="fs-5">
+                    La skybox è composta da 6 immagini etichettate come nx, px, ny, py, nz, e pz, questo porta ad una texture chiamata cubemap o texture cubica. La prima lettera dell'etichetta sta per positive o negative mentre la seconda indica la cordinata.
+                    <br>
+                    Il problema principale è stato poi trovare le sei immagini che fungessero da texture della skybox. La soluzione a questo problema è stata utilizzare il seguente tool su un'immagine panoramica della galassia presa dal sito della NASA: <a href="https://jaxry.github.io/panorama-to-cubemap/">Panoramic to cubemap converter</a>
+                </p>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="camera">Camera 3D con target</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4">
+                <p class="fs-5">
+                    Per il sistema della camera ho provato inizialmente ad utilizzare la funzione <i>lookAt()</i> di WebGL ma quest'ultima non mi dava abbastanza libertà. Una volta che viene utilizzata la funzione lookAt la camera rimane fissa sull'oggetto ovvero nel nostro caso, il razzo. La camera segue l'oggetto al cambio di posizione di quest'ultimo ma traslando e non ruotando (non c'è tilting). Ho quindi optato per una camera libera che segue il razzo e può tiltare liberamente seguendo l'angolazione di quest'ultimo. Inizialmente è stata una soluzione meno immediata e più complessa ma la più gestibile.
+                </p>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="collision">Gestione delle collisioni</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4 d-flex flex-column justify-content-center align-items-center">
+                <p class="fs-5">
+                    Nel momento in cui ho dovuto decidere come gestire le collisioni mi sono trovato davanti a un bivio. WebGL essendo una libreria che punta per lo più a mostrare oggetti 3D non fornisce funzioni native per la rilevazione di collisioni fra oggetti (a differenza di three.js). Per rilevare le collisioni tra due modelli ho dovuto scegliere tra le seguenti opzioni:
+                </p>
+                <ul class="fs-5">
+                    <li>ciclare sui vertici dei due modelli e controllare l'esistenza di possibili intersezioni (costo computazionale elevato)</li>
+                    <li>creare delle hitbox per ogni modello che ne approssima le forme per poi controllare eventuali intersezioni tra i vertici delle hitbox (costo computazionale dipendente dalla complessità della hitbox)</li>
+                    <li>eventuali soluzioni alternative</li>
+                </ul>
+                <p class="fs-5">
+                    Tra le possibili tecniche per la creazione di hitbox da assegnare ad un modello c'è quella delle <i>Bounding Sphere</i>, la quale approssima le forme del modello attraverso una o più sfere. Tenendo in considerazione che il numero dei modelli 3D dei meteoriti dei quali avrei dovuto, ad ogni resa grafica, calcolare una possibile collisione, aumenta ad ogni livello del gioco, il rischio era quello di cadere in costi computazionali troppo elevati. Per la precedente ragione ho deciso di adottare una sorta di tecnica <i>Bounding Sphere</i> ad unica sfera, la quale non si basa sul ciclare sui vertici ma sul controllare la distanza tra il centro di due modelli, in questo modo è come se si approssimasse la forma di un oggetto e quindi la sua "hitbox", con una sfera.
+                </p>
+                <img
+                    src="./img/boundingsphere.png"
+                    class="img-fluid mb-3 w-50"
+                    alt="bounding sphere collision"
+                />
+                <p class="fs-5">
+                    Come è possibile vedere dall'immagine se r1 + r2 &#62; D c'è una collisione.
+                </p>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="adrender">Advanced Rendering</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4 d-flex flex-column justify-content-center align-items-center">
+                <p class="fs-5">
+                    Nelle impostazioni visualizzabili accanto al tasto play è possibile modificare le coordinate della front light ed inoltre come impostazione di advanced rendering è possibile attivare l'utilizzo delle bump map. Attenzione: le bump map sono poco evidenti a causa della luce fioca, la bump map più evidente è quella del meteorite.
+                </p>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="adrender">Nota Bene</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4 d-flex flex-column justify-content-center align-items-center">
+                <p class="fs-5">
+                    Attenzione per eseguire il progetto sul live server di vscode, è necessario startare il live server dalla cartella "SomebodySavesTheWorld" altrimenti potrebbero esserci problemi con la gestione dei path delle risorse.
+                </p>
+            </div>
+            <h1 class="display-6 text-white mt-5" id="resource">Risorse</h1>
+            <div class="container bg-dark-subtle rounded-3 p-4 d-flex flex-column">
+                <ul class="fs-5">
+                    <li><a href="https://webglfundamentals.org/">WebGL Fundamentals</a></li>
+                    <li><a href="https://jaxry.github.io/panorama-to-cubemap/">Panoramic to cubemap converter</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
